@@ -1,0 +1,32 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "description": "Terror"
+    },
+    {
+      "id": 2,
+      "description": "Comédia"
+    },
+    {
+      "id": 3,
+      "description": "Ação"
+    },
+    {
+      "id": 4,
+      "description": "Drama"
+    },
+    {
+      "id": 5,
+      "description": "SciFi"
+    },
+    {
+      "id": 6,
+      "description": "Romance"
+    },
+    {
+      "id": 7,
+      "description": "Suspense"
+    }
+  ]
+}
