@@ -9,6 +9,7 @@ export default {
         id: "",
         description: "",
       },
+      editing: false,
     };
   },
   computed: {
@@ -16,9 +17,25 @@ export default {
     ...mapState(useCategoryStore, ["categories"]),
   },
   methods: {
-    ...mapActions(useCategoryStore, ["getAllCategories", "saveCategory"]),
+    ...mapActions(useCategoryStore, [
+      "getAllCategories",
+      "saveCategory",
+      "deleteCategory",
+    ]),
     save() {
       this.saveCategory(this.currentCategory);
+    },
+    async deleteItem(category_id) {
+      try {
+        await this.deleteCategory(category_id);
+        alert("Item excluído com sucesso.");
+      } catch (e) {
+        alert(e);
+      }
+    },
+    prepareToUpdate(category) {
+      Object.assign(this.currentCategory, category);
+      this.editing = true;
     },
   },
   async mounted() {
@@ -34,7 +51,9 @@ export default {
   <h1>Cadastro de Categorias</h1>
   <div class="category-form">
     <input type="text" v-model="currentCategory.description" />
-    <button @click="save">Adicionar</button>
+    <button @click="save">
+      {{ editing ? "Salvar" : "Adicionar" }}
+    </button>
   </div>
   <div class="category-list">
     <table class="table">
@@ -55,7 +74,10 @@ export default {
         <tr v-for="category of categories" :key="category.id">
           <td>{{ category.id }}</td>
           <td>{{ category.description }}</td>
-          <td></td>
+          <td>
+            <button @click="prepareToUpdate(category)">Update</button>
+            <button @click="deleteItem(category.id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -13,20 +13,12 @@
       "description": "Ação"
     },
     {
-      "id": 4,
+      "id": 10,
+      "description": "Suspense!"
+    },
+    {
+      "id": 11,
       "description": "Drama"
-    },
-    {
-      "id": 5,
-      "description": "SciFi"
-    },
-    {
-      "id": 6,
-      "description": "Romance"
-    },
-    {
-      "id": 7,
-      "description": "Suspense"
     }
   ]
 }
