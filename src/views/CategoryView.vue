@@ -91,7 +91,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .category-form input {
   width: 75%;
   height: 40px;

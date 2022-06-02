@@ -6,11 +6,12 @@
     "build": "vite build",
     "preview": "vite preview --port 5050",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "db:dev": "json-server --watch db/db.json --port 4000"
+    "db:dev": "json-server-relationship --watch db/db.json --port 4000"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "json-server": "^0.17.0",
+    "json-server-relationship": "^0.14.5",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"

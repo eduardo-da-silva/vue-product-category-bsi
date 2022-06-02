@@ -1,5 +1,5 @@
 {
-  "category": [
+  "categories": [
     {
       "id": 1,
       "description": "Terror"
@@ -21,15 +21,26 @@
       "description": "Drama"
     },
     {
-      "description": "SciFi",
-      "id": 12
+      "id": 12,
+      "description": "Sci-Fi"
+    }
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "description": "Teste"
     }
   ],
   "products": [
     {
       "id": 1,
-      "name": "Top Gun",
-      "categoryId": 3
+      "name": "Top Gun!",
+      "categoryId": "3",
+      "category": {
+        "id": 2,
+        "description": "Comédia"
+      },
+      "genreId": 1
     }
   ]
 }
