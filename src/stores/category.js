@@ -26,7 +26,7 @@ export const useCategoryStore = defineStore({
           category
         );
         this.categories.push(data);
-        return Promise.resolve();
+        return Promise.resolve("Categoria adicionada com sucesso!");
       } catch (e) {
         console.error(e);
         return Promise.reject(e);
@@ -40,7 +40,7 @@ export const useCategoryStore = defineStore({
         );
         const index = this.categories.findIndex((c) => c.id === category.id);
         this.categories.splice(index, 1, category);
-        return Promise.resolve();
+        return Promise.resolve("Categoria alterada com sucesso!");
       } catch (e) {
         console.error(e);
         return Promise.reject(e);
@@ -48,7 +48,7 @@ export const useCategoryStore = defineStore({
     },
     async saveCategory(category) {
       if (category.id) {
-        return this.updateCategory(category);
+        return await this.updateCategory(category);
       } else {
         return await this.addCategory(category);
       }

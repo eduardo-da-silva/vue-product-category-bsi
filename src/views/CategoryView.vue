@@ -22,8 +22,15 @@ export default {
       "saveCategory",
       "deleteCategory",
     ]),
-    save() {
-      this.saveCategory(this.currentCategory);
+    async save() {
+      try {
+        const msg = await this.saveCategory(this.currentCategory);
+        alert(msg);
+        this.editing = false;
+        this.currentCategory = {};
+      } catch (e) {
+        alert("Ooops! Algo de errado!");
+      }
     },
     async deleteItem(category_id) {
       try {

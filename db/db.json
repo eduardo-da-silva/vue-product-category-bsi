@@ -14,11 +14,22 @@
     },
     {
       "id": 10,
-      "description": "Suspense!"
+      "description": "Suspense"
     },
     {
       "id": 11,
       "description": "Drama"
+    },
+    {
+      "description": "SciFi",
+      "id": 12
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Top Gun",
+      "categoryId": 3
     }
   ]
 }
