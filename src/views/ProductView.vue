@@ -1,6 +1,7 @@
 <script>
 import { mapState, mapStores, mapActions } from "pinia";
 import { useProductStore } from "@/stores/product";
+import { useCategoryStore } from "@/stores/category";
 
 export default {
   data() {
@@ -17,6 +18,7 @@ export default {
   computed: {
     ...mapStores(useProductStore),
     ...mapState(useProductStore, ["products"]),
+    ...mapState(useCategoryStore, ["categories"]),
   },
   methods: {
     ...mapActions(useProductStore, [
@@ -24,6 +26,7 @@ export default {
       "saveProduct",
       "deleteProduct",
     ]),
+    ...mapActions(useCategoryStore, ["getAllCategories"]),
     async save() {
       try {
         const msg = await this.saveProduct(this.currentProduct);
@@ -49,6 +52,7 @@ export default {
   },
   async mounted() {
     try {
+      await this.getAllCategories();
       await this.getAllProducts();
     } catch (e) {
       alert(e);
@@ -60,7 +64,15 @@ export default {
   <h1>Cadastro de Produtos</h1>
   <div class="product-form">
     <input type="text" v-model="currentProduct.name" />
-    <input type="text" v-model="currentProduct.categoryId" />
+    <select v-model="currentProduct.categoryId">
+      <option
+        v-for="category in categories"
+        :value="category.id"
+        :key="category.id"
+      >
+        {{ category.description }}
+      </option>
+    </select>
     <button @click="save">
       {{ editing ? "Salvar" : "Adicionar" }}
     </button>
@@ -100,12 +112,22 @@ export default {
 
 <style scoped>
 .product-form input {
-  width: 75%;
+  width: 40%;
   height: 40px;
   border-radius: 20px;
   border: 1px solid gray;
   padding-left: 20px;
   font-size: 1.2em;
+}
+
+.product-form select {
+  width: 30%;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid gray;
+  padding-left: 20px;
+  font-size: 1.2em;
+  margin-left: 1%;
 }
 
 .product-form button {

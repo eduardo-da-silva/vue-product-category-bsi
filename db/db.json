@@ -6,15 +6,11 @@
     },
     {
       "id": 2,
-      "description": "Comédia"
+      "description": "Comédias"
     },
     {
       "id": 3,
       "description": "Ação"
-    },
-    {
-      "id": 10,
-      "description": "Suspense"
     },
     {
       "id": 11,
@@ -35,11 +31,13 @@
     {
       "id": 1,
       "name": "Top Gun!",
-      "categoryId": "3",
-      "category": {
-        "id": 2,
-        "description": "Comédia"
-      },
+      "categoryId": 3,
+      "genreId": 1
+    },
+    {
+      "id": 2,
+      "name": "Novo Filme",
+      "categoryId": 11,
       "genreId": 1
     }
   ]

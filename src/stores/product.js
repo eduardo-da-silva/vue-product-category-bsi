@@ -36,6 +36,7 @@ export const useProductStore = defineStore({
     },
     async updateProduct(product) {
       try {
+        delete product.category;
         await axios.put(
           `http://localhost:4000/products/${product.id}`,
           product
