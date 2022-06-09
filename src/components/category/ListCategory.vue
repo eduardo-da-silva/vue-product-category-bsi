@@ -1,40 +1,46 @@
 <script>
+import { mapState, mapStores, mapActions } from "pinia";
+import { useCategoryStore } from "@/stores/category";
+import DataTable from "../template/DataTable.vue";
 export default {
-  props: {
-    categories: {
-      type: Array,
-      required: true,
+  components: { DataTable },
+  data() {
+    return {
+      columns: ["ID", "Descrição"],
+    };
+  },
+  computed: {
+    ...mapStores(useCategoryStore),
+    ...mapState(useCategoryStore, ["categories"]),
+  },
+  methods: {
+    ...mapActions(useCategoryStore, ["getAllCategories", "deleteCategory"]),
+    async deleteItem(category) {
+      try {
+        await this.deleteCategory(category.id);
+        alert("Item excluído com sucesso.");
+      } catch (e) {
+        alert(e);
+      }
     },
+  },
+  async mounted() {
+    try {
+      await this.getAllCategories();
+    } catch (e) {
+      alert(e);
+    }
   },
 };
 </script>
 <template>
   <div class="category-list">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="text-left">
-            <span> <h2>ID</h2> </span>
-          </th>
-          <th class="text-left">
-            <span> <h2>Descrição</h2> </span>
-          </th>
-          <th class="text-left">
-            <span> <h2>Ações</h2> </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="category of categories" :key="category.id">
-          <td>{{ category.id }}</td>
-          <td>{{ category.description }}</td>
-          <td>
-            <button @click="$emit('edit', category)">Update</button>
-            <button @click="$emit('delete', category.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <data-table
+      :columns="columns"
+      :items="categories"
+      @edit="$emit('edit', $event)"
+      @delete="deleteItem"
+    />
   </div>
 </template>
 
@@ -42,30 +48,5 @@ export default {
 .category-list {
   margin: 3% auto;
   width: 70%;
-}
-table {
-  /* display: table; */
-  border-collapse: separate;
-  border-spacing: 2px;
-  border-color: gray;
-  width: 100%;
-}
-
-th {
-  border-bottom: 2px solid #444;
-  text-align: left;
-}
-
-td {
-  padding: 10px;
-}
-
-thead tr {
-  background-color: #444;
-  color: whitesmoke;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: #c3c3c3;
 }
 </style>

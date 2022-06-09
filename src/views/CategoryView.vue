@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapStores, mapActions } from "pinia";
+import { mapActions } from "pinia";
 import { useCategoryStore } from "@/stores/category";
 import ListCategory from "../components/category/ListCategory.vue";
 
@@ -14,16 +14,9 @@ export default {
       editing: false,
     };
   },
-  computed: {
-    ...mapStores(useCategoryStore),
-    ...mapState(useCategoryStore, ["categories"]),
-  },
+
   methods: {
-    ...mapActions(useCategoryStore, [
-      "getAllCategories",
-      "saveCategory",
-      "deleteCategory",
-    ]),
+    ...mapActions(useCategoryStore, ["saveCategory"]),
     async save() {
       try {
         const msg = await this.saveCategory(this.currentCategory);
@@ -34,25 +27,10 @@ export default {
         alert("Ooops! Algo de errado!");
       }
     },
-    async deleteItem(category_id) {
-      try {
-        await this.deleteCategory(category_id);
-        alert("Item excluído com sucesso.");
-      } catch (e) {
-        alert(e);
-      }
-    },
     prepareToUpdate(category) {
       Object.assign(this.currentCategory, category);
       this.editing = true;
     },
-  },
-  async mounted() {
-    try {
-      await this.getAllCategories();
-    } catch (e) {
-      alert(e);
-    }
   },
 };
 </script>
@@ -64,11 +42,7 @@ export default {
       {{ editing ? "Salvar" : "Adicionar" }}
     </button>
   </div>
-  <ListCategory
-    :categories="categories"
-    @delete="deleteItem"
-    @edit="prepareToUpdate"
-  />
+  <ListCategory :categories="categories" @edit="prepareToUpdate" />
 </template>
 
 <style scoped>
