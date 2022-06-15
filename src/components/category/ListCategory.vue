@@ -6,7 +6,10 @@ export default {
   components: { DataTable },
   data() {
     return {
-      columns: ["ID", "Descrição"],
+      columns: [
+        { label: "ID", field: "id" },
+        { label: "Descrição", field: "description" },
+      ],
     };
   },
   computed: {

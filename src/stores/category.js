@@ -39,7 +39,7 @@ export const useCategoryStore = defineStore({
           category
         );
         const index = this.categories.findIndex((c) => c.id === category.id);
-        this.categories.splice(index, 1, category);
+        this.categories.splice(index, 1, { ...category });
         return Promise.resolve("Categoria alterada com sucesso!");
       } catch (e) {
         console.error(e);

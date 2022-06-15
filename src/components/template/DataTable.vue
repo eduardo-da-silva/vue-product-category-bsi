@@ -16,9 +16,9 @@ export default {
   <table class="data-table">
     <thead>
       <tr>
-        <th class="text-left" v-for="(column, i) of columns" :key="i">
+        <th class="text-left" v-for="column of columns" :key="column.field">
           <span>
-            <h2>{{ column }}</h2>
+            <h2>{{ column.label }}</h2>
           </span>
         </th>
         <th class="text-left">
@@ -28,7 +28,10 @@ export default {
     </thead>
     <tbody>
       <tr v-for="(row, i) of items" :key="i">
-        <td v-for="(data, i) of row" :key="i">{{ data }}</td>
+        <!-- <td v-for="(data, i) of row" :key="i">{{ data }}</td> -->
+        <td v-for="column of columns" :key="column.field">
+          {{ row[column.field] }}
+        </td>
         <td>
           <button @click="$emit('edit', row)">Update</button>
           <button @click="$emit('delete', row)">Delete</button>

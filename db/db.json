@@ -14,11 +14,23 @@
     },
     {
       "id": 12,
-      "description": "Sci-Fi"
+      "description": "SciFi"
     },
     {
       "id": 13,
       "description": "Comédia"
+    },
+    {
+      "id": 14,
+      "description": "Romance"
+    },
+    {
+      "description": "Luta",
+      "id": 15
+    },
+    {
+      "id": 16,
+      "description": "Nova"
     }
   ],
   "genres": [
